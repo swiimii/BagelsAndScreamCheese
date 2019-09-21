@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class SimpleFollow : MonoBehaviour
 {
-    public Transform target;
+    public GameObject target;
 
     // Start is called before the first frame update
     void Start()
     {
         if (!target)
-            target = GameObject.FindGameObjectWithTag("Player").transform;
+            target = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -18,7 +18,7 @@ public class SimpleFollow : MonoBehaviour
     {
         if (target.gameObject.activeInHierarchy)
         {
-            transform.position = new Vector3(target.position.x, target.position.y, transform.position.z);
+            transform.position = new Vector3(target.transform.position.x, target.transform.position.y, transform.position.z);
         }
     }
 }

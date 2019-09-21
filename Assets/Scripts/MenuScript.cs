@@ -5,19 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour
 {
+    public GameObject menu;    
 
-    // Menu accessible by static functions.
-    public static GameObject menu;
-
-    private void Start()
-    {
-        // Attached menu is accessible by static functions.
-        menu = gameObject;
-        gameObject.SetActive(false);
-    }
-
-
-    public static void ToggleMenu()
+    public void ToggleMenu()
     {
         if (menu.activeInHierarchy)
             menu.SetActive(false);
@@ -25,7 +15,7 @@ public class MenuScript : MonoBehaviour
             menu.SetActive(true);
     }
 
-    public static void ChangeScene(int scene)
+    public void ChangeScene(int scene)
     {
         SceneManager.LoadScene(scene);
     }

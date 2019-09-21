@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     {
         // Get Movement
         var movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        if (Mathf.Abs(movementInput.x) > movementDeadzone || Mathf.Abs(movementInput.y) > movementDeadzone)
+        if (GetComponent<PlayerResourceController>().isDead == false && Mathf.Abs(movementInput.x) > movementDeadzone || Mathf.Abs(movementInput.y) > movementDeadzone)
         {
             // Vector magnitude won't exceed 1
             if(movementInput.magnitude > 1)

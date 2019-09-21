@@ -41,9 +41,11 @@ public class PlayerResourceController : ResourceController
     public override IEnumerator Death()
     {
         isDead = true;
+        GetComponent<PlayerController>().enabled = false;
         // gameObject.SetActive(false);
         yield return new WaitForSeconds(2f);
-        MenuScript.ToggleMenu();
+        GameObject.FindGameObjectWithTag("MenuController").GetComponent<MenuScript>().ToggleMenu();
+        GetComponent<SpriteRenderer>().enabled = false;
     }
 
 

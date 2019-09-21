@@ -33,7 +33,7 @@ public abstract class ResourceController : MonoBehaviour
 
     public virtual IEnumerator Death()
     {
+        yield return null;
         Destroy(gameObject);
-        yield return new WaitForSeconds(3);
     }
 }
