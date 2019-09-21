@@ -10,4 +10,5 @@ public class PlayerBehavior : MonoBehaviour
     {
         transform.Translate(direction * moveSpeed);
     }
+
 }

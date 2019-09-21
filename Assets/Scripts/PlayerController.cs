@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
+    public GameObject swordAttack;
     private float movementDeadzone = .1f;
 
     // FixedUpdate called 60 times per second
@@ -21,6 +23,16 @@ public class PlayerController : MonoBehaviour
 
             // Send to playerbehavior
             GetComponent<PlayerBehavior>().Move(movementInput);
+        }
+    }
+
+    // Called once every frame
+    void Update()
+    {
+        if (Input.GetButtonDown("Fire1") && swordAttack.GetComponent<SwordBehavior>().isAttacking == false)
+        {
+            swordAttack.SetActive(true);
+            StartCoroutine(swordAttack.GetComponent<SwordBehavior>().Attack());
         }
     }
 }
