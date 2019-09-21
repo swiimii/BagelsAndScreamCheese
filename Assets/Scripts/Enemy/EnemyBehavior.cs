@@ -16,7 +16,7 @@ public class EnemyBehavior : MonoBehaviour
     // Called from FixedUpdate - no time.deltatime needed
     public void Move()
     {
-        if(player.gameObject.activeInHierarchy)
+        if(player.gameObject.activeInHierarchy && player.gameObject.GetComponent<PlayerResourceController>().isDead == false)
             transform.Translate((player.position - transform.position).normalized * moveSpeed);
     }
 }

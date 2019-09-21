@@ -6,6 +6,7 @@ public class SwordBehavior : MonoBehaviour
 {
     public Transform player;
     public bool isAttacking = false;
+    public int damageDealt = 1;
 
     private void Start()
     {
@@ -38,5 +39,11 @@ public class SwordBehavior : MonoBehaviour
 
         isAttacking = false;
         gameObject.SetActive(false);
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        collision.gameObject.GetComponent<ResourceController>().Damage(damageDealt);
     }
 }

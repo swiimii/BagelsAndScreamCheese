@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerResourceController : ResourceController
 {
     public bool isInvincible = false;
+    public bool isDead = false;
     public float invincibilityDuration = 2f;
 
     public override void Damage(int damage)
@@ -39,8 +40,10 @@ public class PlayerResourceController : ResourceController
 
     public override IEnumerator Death()
     {
-        gameObject.SetActive(false);
-        yield return null;
+        isDead = true;
+        // gameObject.SetActive(false);
+        yield return new WaitForSeconds(2f);
+        MenuScript.ToggleMenu();
     }
 
 

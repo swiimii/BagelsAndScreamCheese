@@ -16,12 +16,19 @@ public abstract class ResourceController : MonoBehaviour
     public virtual void Damage(int damage)
     {
         currentHealth -= damage;
-        if(currentHealth <= 0)
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        if(currentHealth == 0)
         {
             StartCoroutine("Death");
         }
-
-    }    
+    }
+    
+    public virtual void Heal(int damage)
+    {
+        currentHealth += damage;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        
+    }
 
 
     public virtual IEnumerator Death()
