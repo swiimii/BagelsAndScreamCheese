@@ -6,8 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     private float movementDeadzone = .1f;
 
-    // Update is called once per frame
-    void Update()
+    // FixedUpdate called 60 times per second
+    void FixedUpdate()
     {
         // Get Movement
         var movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
