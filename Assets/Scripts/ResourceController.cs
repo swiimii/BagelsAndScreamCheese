@@ -4,7 +4,29 @@ using UnityEngine;
 
 public abstract class ResourceController : MonoBehaviour
 {
-    public int maxHealth;
+
+    protected virtual void Awake()
+    {
+        currentHealth = maxHealth;
+    }
+
+    public int maxHealth = 2;
     public int currentHealth;
-    public abstract void Damage();
+
+    public virtual void Damage(int damage)
+    {
+        currentHealth -= damage;
+        if(currentHealth <= 0)
+        {
+            StartCoroutine("Death");
+        }
+
+    }    
+
+
+    public virtual IEnumerator Death()
+    {
+        Destroy(gameObject);
+        yield return new WaitForSeconds(3);
+    }
 }

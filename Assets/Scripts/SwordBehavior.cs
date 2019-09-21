@@ -9,7 +9,9 @@ public class SwordBehavior : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        if(!player)
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+        
     }
 
     public IEnumerator Attack()
@@ -25,7 +27,7 @@ public class SwordBehavior : MonoBehaviour
         print(rotation);
         transform.eulerAngles = new Vector3(0 , 0, rotation.z * 180 + xdir);
 
-        while (time < Mathf.PI)
+        while (time < Mathf.PI/2)
         {
             transform.position = player.transform.position + (Vector3)(direction * Mathf.Sin(time) * range + offset * direction);
             
