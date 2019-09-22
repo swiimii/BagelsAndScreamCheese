@@ -11,12 +11,16 @@ public class PlayerController : MonoBehaviour
     // FixedUpdate called 60 times per second
     void FixedUpdate()
     {
+#if UNITY_ANDROID && !UNITY_EDITOR
         // Get Movement
+        var movementInput = new Vector2(Input.acceleration.x * 2, Input.acceleration.y * 2);        
+#else
         var movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+#endif
         if (GetComponent<PlayerResourceController>().isDead == false && Mathf.Abs(movementInput.x) > movementDeadzone || Mathf.Abs(movementInput.y) > movementDeadzone)
         {
             // Vector magnitude won't exceed 1
-            if(movementInput.magnitude > 1)
+            if (movementInput.magnitude > 1)
             {
                 movementInput.Normalize();
             }
@@ -24,6 +28,7 @@ public class PlayerController : MonoBehaviour
             // Send to playerbehavior
             GetComponent<PlayerBehavior>().Move(movementInput);
         }
+
     }
 
     // Called once every frame
@@ -35,4 +40,8 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(swordAttack.GetComponent<SwordBehavior>().Attack());
         }
     }
+
+
+
 }
+
